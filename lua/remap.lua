@@ -27,5 +27,4 @@ vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagn
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Buffers
-vim.keymap.set("n", "<leader>db", ":wbd<cr>", { desc = "Write and Close Buffer" }) -- Write Delete Buffer
-vim.keymap.set("n", "<leader>q", ":bd<cr>", { desc = "Close Buffer" })             -- Delete Buffer
+vim.keymap.set("n", "<leader>q", ":bd<cr>", { desc = "Close Buffer" }) -- Delete Buffer
