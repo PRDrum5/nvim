@@ -24,9 +24,9 @@ return {
 
             require("mason").setup({
                 ensure_installed = {
-                    "mypy",
-                    "pylsp",
                     "black",
+                    "mypy",
+                    "isort",
                     "debugpy",
                 },
             })
@@ -48,6 +48,21 @@ return {
                 handlers = {
                     function(server_name)
                         require("lspconfig")[server_name].setup({})
+                    end,
+
+                    -- Custom handler for PyLSP
+                    pylsp = function()
+                        require("lspconfig").pylsp.setup({
+                            ft = "python",
+                            settings = {
+                                pylsp = {
+                                    plugins = {
+                                        pylsp_mypy = { enabled = true },
+                                        pyls_isort = { enabled = true },
+                                    },
+                                },
+                            },
+                        })
                     end,
                 },
             })
