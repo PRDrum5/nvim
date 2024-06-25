@@ -17,11 +17,15 @@ vim.keymap.set("n", "Q", "<nop>")
 
 vim.keymap.set("n", "gb", "<C-o>")
 
-vim.keymap.set("n", "<leader>v", ":vsplit<cr>")
-vim.keymap.set("n", "<leader>h", ":split<cr>")
+vim.keymap.set("n", "<leader>v", ":vsplit<cr>", { desc = "Vertical Split" })
+vim.keymap.set("n", "<leader>h", ":split<cr>", { desc = "Horizontal Split" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+
+-- Buffers
+vim.keymap.set("n", "<leader>db", ":wbd<cr>", { desc = "Write and Close Buffer" }) -- Write Delete Buffer
+vim.keymap.set("n", "<leader>q", ":bd<cr>", { desc = "Close Buffer" })             -- Delete Buffer
