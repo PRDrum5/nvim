@@ -16,6 +16,8 @@ return {
             vim.keymap.set("n", "<C-q>", ":BufferLineCloseOthers<CR>")
             vim.keymap.set("n", "<C-n>", ":BufferLineCycleNext<CR>")
             vim.keymap.set("n", "<C-p>", ":BufferLineCyclePrev<CR>")
+            vim.keymap.set("n", "<Leader>>", ":BufferLineMoveNext<CR>")
+            vim.keymap.set("n", "<Leader><", ":BufferLineMovePrev<CR>")
         end,
     },
 }

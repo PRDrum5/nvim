@@ -60,6 +60,7 @@ return {
                 servers = {
                     ["lua_ls"] = { "lua" },
                     ["rust_analyzer"] = { "rust" },
+                    ["clangd"] = { "c", "cpp" },
                 },
             })
 
