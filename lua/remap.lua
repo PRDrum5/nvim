@@ -1,8 +1,3 @@
-vim.keymap.set("n", "<C-k>", ":wincmd k<CR>")
-vim.keymap.set("n", "<C-j>", ":wincmd j<CR>")
-vim.keymap.set("n", "<C-h>", ":wincmd h<CR>")
-vim.keymap.set("n", "<C-l>", ":wincmd l<CR>")
-
 vim.keymap.set("n", "Y", "yy")
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
