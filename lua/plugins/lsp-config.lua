@@ -25,7 +25,6 @@ return {
             require("mason").setup({
                 ensure_installed = {
                     "black",
-                    "mypy",
                     "isort",
                     "debugpy",
                 },
@@ -33,7 +32,6 @@ return {
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "lua_ls",
-                    "pylsp",
                     "rust_analyzer",
                     "bashls",
                     "clangd", -- C/C++
@@ -44,6 +42,7 @@ return {
                     "lemminx", -- XML
                     "gitlab_ci_ls", -- YAML
                     "marksman", -- Markdown
+                    "pylsp",
                 },
                 handlers = {
                     function(server_name)
@@ -56,9 +55,17 @@ return {
                             ft = "python",
                             settings = {
                                 pylsp = {
+                                    configurationSources = "pycodestyle",
                                     plugins = {
-                                        pylsp_mypy = { enabled = true },
                                         pyls_isort = { enabled = true },
+                                        pycodestyle = {
+                                            maxLineLength = 100,
+                                            indentSize = 4,
+                                            ignore = {},
+                                        },
+                                        rope_completion = {
+                                            enabled = true,
+                                        },
                                     },
                                 },
                             },
