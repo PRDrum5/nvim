@@ -18,7 +18,7 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "gb", "<C-o>")
 
 vim.keymap.set("n", "<leader>v", ":vsplit<cr>", { desc = "Vertical Split" })
-vim.keymap.set("n", "<leader>h", ":split<cr>", { desc = "Horizontal Split" })
+vim.keymap.set("n", "<leader>vv", ":split<cr>", { desc = "Horizontal Split" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })

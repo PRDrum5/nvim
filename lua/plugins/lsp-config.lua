@@ -26,6 +26,7 @@ return {
                 ensure_installed = {
                     "black",
                     "isort",
+                    "flake8",
                     "debugpy",
                 },
             })
@@ -51,20 +52,40 @@ return {
 
                     -- Custom handler for PyLSP
                     pylsp = function()
+                        local get_flake8_exe = function()
+                            local venv_path = os.getenv("VIRTUAL_ENV")
+                            local flake8_exe = "flake8"
+                            if venv_path ~= nil then
+                                flake8_exe = os.getenv("VIRTUAL_ENV") .. "bin/flake8"
+                            end
+                            return flake8_exe
+                        end
+
                         require("lspconfig").pylsp.setup({
                             ft = "python",
                             settings = {
                                 pylsp = {
                                     configurationSources = "pycodestyle",
                                     plugins = {
-                                        pyls_isort = { enabled = true },
                                         pycodestyle = {
+                                            enabled = false,
                                             maxLineLength = 100,
                                             indentSize = 4,
                                             ignore = {},
                                         },
-                                        rope_completion = {
+                                        flake8 = {
                                             enabled = true,
+                                            maxLineLength = 100,
+                                            indentSize = 4,
+                                            ignore = {},
+                                            executable = get_flake8_exe(),
+                                        },
+                                        jedi = {
+                                            extra_path = { os.getenv("VIRTUAL_ENV") },
+                                        },
+                                        jedi_completion = {
+                                            enabled = true,
+                                            fuzzy = true,
                                         },
                                     },
                                 },

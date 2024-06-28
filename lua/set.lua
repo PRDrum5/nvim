@@ -40,3 +40,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank({ higroup = "IncSearch", timeout = 100 })
     end,
 })
+
+-- Default Python Version
+vim.g.python3_host_prog = "/usr/local/bin/python3.11"
