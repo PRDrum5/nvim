@@ -25,4 +25,3 @@ require("remap")
 
 -- Sets
 require("set")
-print(os.getenv("VIRTUAL_ENV"))

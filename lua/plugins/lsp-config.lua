@@ -108,7 +108,6 @@ return {
             })
 
             local cmp = require("cmp")
-            local cmp_action = require("lsp-zero").cmp_action()
             local cmp_format = require("lsp-zero").cmp_format({ details = true })
             require("luasnip.loaders.from_vscode").lazy_load()
             cmp.setup({
@@ -125,8 +124,6 @@ return {
                 },
                 mapping = cmp.mapping.preset.insert({
                     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                    ["<Tab>"] = cmp_action.luasnip_supertab(),
-                    ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
                 }),
             })
 
