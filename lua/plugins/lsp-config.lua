@@ -123,6 +123,7 @@ return {
                     end,
                 },
                 mapping = cmp.mapping.preset.insert({
+                    ["<C-Space>"] = cmp.mapping.confirm({ select = true }),
                     ["<CR>"] = cmp.mapping.confirm({ select = true }),
                 }),
             })

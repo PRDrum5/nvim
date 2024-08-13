@@ -7,6 +7,10 @@ return {
                 theme = "onedark",
             },
             sections = {
+                lualine_x = { "encoding", "fileformat", "filetype" },
+                lualine_y = { "tabs" },
+                lualine_z = { "location" },
+
                 lualine_c = {
                     {
                         "filename",
