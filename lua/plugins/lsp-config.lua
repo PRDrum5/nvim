@@ -24,9 +24,6 @@ return {
 
             require("mason").setup({
                 ensure_installed = {
-                    "black",
-                    "isort",
-                    "flake8",
                     "debugpy",
                 },
             })
@@ -39,55 +36,40 @@ return {
                     "cmake",
                     "dockerls",
                     "jsonls",
-                    "taplo", -- TOML
-                    "lemminx", -- XML
-                    "gitlab_ci_ls", -- YAML
+                    "taplo",    -- TOML
+                    "lemminx",  -- XML
                     "marksman", -- Markdown
-                    "pylsp",
+                    "pyright",
+                    "ruff"
                 },
                 handlers = {
                     function(server_name)
                         require("lspconfig")[server_name].setup({})
                     end,
 
-                    -- Custom handler for PyLSP
-                    pylsp = function()
-                        local get_flake8_exe = function()
-                            local venv_path = os.getenv("VIRTUAL_ENV")
-                            local flake8_exe = "flake8"
-                            if venv_path ~= nil then
-                                flake8_exe = os.getenv("VIRTUAL_ENV") .. "bin/flake8"
-                            end
-                            return flake8_exe
-                        end
-
-                        require("lspconfig").pylsp.setup({
-                            ft = "python",
+                    -- Custom Pyright config
+                    ["pyright"] = function()
+                        require("lspconfig").pyright.setup({
                             settings = {
-                                pylsp = {
-                                    configurationSources = "pycodestyle",
-                                    plugins = {
-                                        pycodestyle = {
-                                            enabled = false,
-                                            maxLineLength = 100,
-                                            indentSize = 4,
-                                            ignore = {},
-                                        },
-                                        flake8 = {
-                                            enabled = true,
-                                            maxLineLength = 100,
-                                            indentSize = 4,
-                                            ignore = {},
-                                            executable = get_flake8_exe(),
-                                        },
-                                        jedi = {
-                                            extra_path = { os.getenv("VIRTUAL_ENV") },
-                                        },
-                                        jedi_completion = {
-                                            enabled = true,
-                                            fuzzy = true,
-                                        },
+                                python = {
+                                    venvPath = ".",                 -- path to where `.venv` lives
+                                    venv = ".venv",                 -- name of the virtual environment
+                                    analysis = {
+                                        typeCheckingMode = "basic", -- or "strict"
+                                        autoSearchPaths = true,
+                                        useLibraryCodeForTypes = true,
                                     },
+                                },
+                            },
+                        })
+                    end,
+
+                    -- Custom Ruff config
+                    ["ruff_lsp"] = function()
+                        require("lspconfig").ruff_lsp.setup({
+                            init_options = {
+                                settings = {
+                                    args = {}, -- optional: pass ruff CLI args
                                 },
                             },
                         })
